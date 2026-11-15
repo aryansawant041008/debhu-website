@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-syne: "Syne", sans-serif;
+  --font-sans: "Syne", sans-serif;
+  --color-axion-cyan: #00f0ff;
+  --color-axion-violet: #7c3aed;
+  --color-axion-obsidian: #030106;
+  --color-axion-surface: #0b0518;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #000000;
+    color: #ffffff;
+    font-family: "Syne", sans-serif;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+.cyber-grid {
+  background-size: 60px 60px;
+  background-image:
+    linear-gradient(to right, rgba(139, 92, 246, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 240, 255, 0.05) 1px, transparent 1px);
+}
+
+@keyframes zeroGravityFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-1.5deg) scale(1.015);
+  }
+}
+
+.astronaut-float-wrapper {
+  animation: zeroGravityFloat 7s ease-in-out infinite;
+}
+
+.astronaut-img {
+  object-fit: contain;
+  object-position: center 45%;
+  mix-blend-mode: screen;
+}
+
+@media (min-width: 768px) {
+  .astronaut-img {
+    object-position: 86% center;
+  }
+}
+
+.astronaut-base-state {
+  filter: grayscale(100%) brightness(0.42) contrast(1.25) drop-shadow(0 0 25px rgba(124, 58, 237, 0.35));
+  opacity: 0.75;
+}
+
+.astronaut-reveal-state {
+  filter: saturate(1.55) brightness(1.22) contrast(1.18) drop-shadow(0 0 24px rgba(0, 240, 255, 0.65));
+  opacity: 1;
+}
+
+.cyan-logo-glow {
+  filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.85))
+    drop-shadow(0 0 16px rgba(124, 58, 237, 0.55));
+}
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(10px);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+.scroll-wheel-dot {
+  animation: scrollWheel 2.2s infinite ease-in-out;
+}

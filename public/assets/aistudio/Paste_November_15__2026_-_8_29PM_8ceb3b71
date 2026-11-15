@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXION | Aryan Amendra Sawant — Cyber-Ancient Intelligence</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              accent: '#00ff9d',
+              500: '#10b981',
+              400: '#34d399',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Cyber Grid Overlay */
+    .cyber-grid {
+      background-size: 60px 60px;
+      background-image: 
+        linear-gradient(to right, rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    }
+
+    /* Glassmorphism Capsules */
+    .nav-capsule {
+      background: rgba(8, 16, 12, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 255, 157, 0.25);
+    }
+
+    .glass-btn {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .glass-btn:hover {
+      border-color: rgba(0, 255, 157, 0.6);
+      box-shadow: 0 0 25px rgba(0, 255, 157, 0.2);
+    }
+
+    /* Statue Alignment */
+    .statue-img {
+      object-fit: cover;
+      object-position: 75% center;
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
+    }
+
+    @media (min-width: 768px) {
+      .statue-img {
+        object-position: right center;
+        opacity: 1;
+      }
+    }
+
+    /* Spotlight Follower Halo */
+    #spotlight-halo {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      border-radius: 9999px;
+      border: 2px solid rgba(0, 255, 157, 0.55);
+      box-shadow: 
+        0 0 40px rgba(0, 255, 157, 0.25),
+        inset 0 0 30px rgba(0, 255, 157, 0.15);
+      pointer-events: none;
+      z-index: 4;
+      transition: border-color 0.3s ease;
+    }
+
+    /* Animated Scroll Wheel */
+    @keyframes scrollWheel {
+      0% { transform: translateY(0); opacity: 1; }
+      75% { transform: translateY(12px); opacity: 0.15; }
+      100% { transform: translateY(0); opacity: 0; }
+    }
+
+    .scroll-wheel-dot {
+      animation: scrollWheel 2s infinite ease-in-out;
+    }
+
+    /* Subtle Text Glow */
+    .neon-text-glow {
+      text-shadow: 0 0 30px rgba(0, 255, 157, 0.35);
+    }
+
+    /* Custom Scrollbar for Profile Modal */
+    .modal-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-scroll::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.4);
+    }
+    .modal-scroll::-webkit-scrollbar-thumb {
+      background: rgba(0, 255, 157, 0.35);
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO CONTAINER -->
+  <main id="hero-container" class="relative w-screen h-screen bg-black overflow-hidden">
+
+    <!-- 1. BACKGROUND IMAGE LAYER STAGE (z-1 to z-4) -->
+    <div class="absolute inset-0 z-[1] pointer-events-none select-none">
+      <!-- Base Classical Statue -->
+      <img 
+        src="https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/statu-image.png" 
+        alt="AXION Classical Statue Base" 
+        class="statue-img absolute inset-0 w-full h-full"
+      />
+
+      <!-- Illuminated Cyber Statue Reveal Layer -->
+      <div id="mask-layer" class="absolute inset-0 w-full h-full z-[2]">
+        <img 
+          src="https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/statu-image-hover.png" 
+          alt="AXION Cyber Circuit Statue Reveal" 
+          class="statue-img absolute inset-0 w-full h-full"
+        />
+      </div>
+
+      <!-- Left Vignette Gradient for Crisp Typography Legibility -->
+      <div class="absolute inset-0 z-[3] bg-gradient-to-r from-black via-black/75 to-transparent md:w-3/4"></div>
+      <div class="absolute inset-0 z-[3] bg-gradient-to-t from-black/90 via-transparent to-black/60"></div>
+
+      <!-- Spotlight Follower Halo -->
+      <div id="spotlight-halo"></div>
+    </div>
+
+    <!-- 2. CYBER GRID & AMBIENT PARTICLES CANVAS (z-5 & z-10) -->
+    <div class="cyber-grid absolute inset-0 z-[5] pointer-events-none"></div>
+    <canvas id="particle-canvas" class="absolute inset-0 z-[10] pointer-events-none"></canvas>
+
+    <!-- 3. FOREGROUND UI CONTENT LAYER (z-20 & z-30) -->
+    <div class="relative z-[20] w-full h-full flex flex-col justify-between px-6 sm:px-10 lg:px-16 py-6 sm:py-8 pointer-events-none">
+
+      <!-- A. HEADER NAVIGATION -->
+      <header class="w-full flex items-center justify-between pointer-events-auto">
+        <!-- Brand Logo -->
+        <a href="#" class="flex items-center gap-3 group" data-sound="click">
+          <div class="w-10 h-10 rounded-xl bg-black/80 border border-emerald-500/40 flex items-center justify-center shadow-[0_0_15px_rgba(0,255,157,0.2)] group-hover:border-brand-accent transition-colors">
+            <!-- Custom Geometric Eye/Triangle Emblem -->
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00ff9d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 3 22 20 2 20" />
+              <circle cx="12" cy="14" r="2.5" fill="#00ff9d" />
+            </svg>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-syne font-extrabold text-2xl tracking-wider text-white leading-none">AXION</span>
+            <span class="font-mono text-[10px] tracking-[0.22em] text-brand-accent/80 uppercase mt-0.5">ARYAN A. SAWANT</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Capsule -->
+        <nav class="hidden md:flex items-center gap-8 nav-capsule px-7 py-2.5 rounded-full text-sm font-medium">
+          <a href="#home" class="relative text-white font-semibold py-0.5" data-sound="hover">
+            Home
+            <span class="absolute -bottom-1.5 left-0 right-0 h-[2px] bg-brand-accent rounded-full shadow-[0_0_8px_#00ff9d]"></span>
+          </a>
+          <button onclick="openProfileModal('about')" class="text-slate-300 hover:text-brand-accent transition-colors" data-sound="hover">About Aryan</button>
+          <button onclick="openProfileModal('work')" class="text-slate-300 hover:text-brand-accent transition-colors" data-sound="hover">Expertise</button>
+          <button onclick="openProfileModal('contact')" class="text-slate-300 hover:text-brand-accent transition-colors" data-sound="hover">Contact</button>
+        </nav>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-3">
+          <!-- Sound Toggle Button -->
+          <button 
+            id="sound-toggle" 
+            aria-label="Toggle Cyber Audio"
+            class="w-10 h-10 rounded-full glass-btn flex items-center justify-center text-brand-accent hover:bg-emerald-950/60"
+            title="Toggle Ambient Cyber Audio"
+          >
+            <i id="sound-icon" data-lucide="volume-x" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Desktop Explore Portal CTA -->
+          <button 
+            onclick="openProfileModal('about')"
+            data-sound="click"
+            class="hidden md:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-black font-bold text-sm rounded-full px-5 py-2.5 shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(0,255,157,0.65)] transition-all cursor-pointer"
+          >
+            <span>Explore Dossier</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button 
+            id="mobile-menu-btn"
+            aria-label="Open Navigation Menu"
+            class="md:hidden w-9 h-9 rounded-full glass-btn flex items-center justify-center text-white"
+          >
+            <i id="menu-icon" data-lucide="menu" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- MOBILE EXPANDED MENU DRAWER -->
+      <div id="mobile-drawer" class="fixed inset-x-4 top-20 z-[40] nav-capsule rounded-2xl p-6 hidden flex-col gap-4 pointer-events-auto md:hidden shadow-[0_20px_50px_rgba(0,0,0,0.9)]">
+        <div class="flex items-center justify-between border-b border-emerald-500/20 pb-3">
+          <div>
+            <p class="text-xs font-mono text-brand-accent uppercase tracking-widest">Architect & Creator</p>
+            <p class="font-syne font-bold text-base text-white">Aryan Amendra Sawant</p>
+          </div>
+          <span class="px-2.5 py-1 rounded-full bg-emerald-950 border border-emerald-500/40 font-mono text-[10px] text-brand-accent">ONLINE</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2.5 text-sm font-medium">
+          <a href="#home" onclick="closeMobileMenu()" class="p-3 rounded-xl bg-emerald-500/10 border border-brand-accent/40 text-brand-accent flex items-center gap-2">
+            <i data-lucide="home" class="w-4 h-4"></i> Home
+          </a>
+          <button onclick="closeMobileMenu(); openProfileModal('about')" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 flex items-center gap-2 text-left">
+            <i data-lucide="user" class="w-4 h-4 text-brand-accent"></i> About Aryan
+          </button>
+          <button onclick="closeMobileMenu(); openProfileModal('work')" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 flex items-center gap-2 text-left">
+            <i data-lucide="cpu" class="w-4 h-4 text-brand-accent"></i> Expertise
+          </button>
+          <button onclick="closeMobileMenu(); openProfileModal('contact')" class="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 flex items-center gap-2 text-left">
+            <i data-lucide="send" class="w-4 h-4 text-brand-accent"></i> Contact
+          </button>
+        </div>
+        <button 
+          onclick="closeMobileMenu(); openProfileModal('about')"
+          class="w-full py-3 rounded-full bg-brand-500 text-black font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.4)]"
+        >
+          Open Aryan's Full Dossier
+        </button>
+      </div>
+
+      <!-- B. HERO MAIN COPY BLOCK -->
+      <section class="max-w-2xl my-auto pointer-events-auto">
+        <!-- Status / Identity Pill -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/85 border border-emerald-500/40 text-brand-accent text-xs font-semibold uppercase tracking-wider mb-5 shadow-[0_0_20px_rgba(0,255,157,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse shadow-[0_0_8px_#00ff9d]"></span>
+          <span>Cyber-AXION Intelligence // Aryan Amendra Sawant</span>
+        </div>
+
+        <!-- Giant Title -->
+        <h1 class="font-syne text-5xl sm:text-7xl xl:text-8xl font-extrabold tracking-tight text-white uppercase leading-[0.95] drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)]">
+          AXION
+        </h1>
+
+        <!-- Personal Identity Sub-Bar -->
+        <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+          <span class="font-syne font-bold text-lg sm:text-xl text-brand-accent tracking-wide neon-text-glow">
+            Aryan Amendra Sawant
+          </span>
+          <span class="text-emerald-500/60 font-mono text-xs">//</span>
+          <span class="font-mono text-xs sm:text-sm text-slate-300 uppercase tracking-widest">
+            Creative Technologist &amp; AI Systems Architect
+          </span>
+        </div>
+
+        <!-- Core Tagline -->
+        <p class="mt-4 text-lg sm:text-2xl font-light text-slate-200 tracking-wide max-w-xl leading-relaxed">
+          Empowering Innovation with Power &amp; Wisdom — engineering next-generation digital experiences, intelligent interfaces, and future-ready systems.
+        </p>
+
+        <!-- Dual Action Buttons -->
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <!-- Primary: Discover -->
+          <button 
+            onclick="openProfileModal('about')"
+            data-sound="click"
+            class="group glass-btn pl-6 pr-2.5 py-2.5 rounded-full flex items-center gap-4 text-white font-semibold text-sm sm:text-base cursor-pointer"
+          >
+            <span>Discover Aryan</span>
+            <span class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center transition-all duration-300 group-hover:bg-brand-accent group-hover:translate-x-1">
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </button>
+
+          <!-- Secondary: Connect -->
+          <button 
+            onclick="openProfileModal('contact')"
+            data-sound="click"
+            class="group px-6 py-3 rounded-full bg-emerald-950/90 hover:bg-emerald-900 border border-emerald-500/50 hover:border-brand-accent text-brand-accent font-semibold text-sm sm:text-base flex items-center gap-2.5 shadow-[0_0_20px_rgba(2,44,34,0.8)] transition-all cursor-pointer"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" class="transition-transform group-hover:rotate-12">
+              <polygon points="12 3 22 20 2 20" />
+            </svg>
+            <span>Connect</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- C. FOOTER BAR -->
+      <footer class="w-full flex items-center justify-between pointer-events-auto">
+        <!-- Left: Social Links -->
+        <div class="flex items-center gap-3">
+          <a href="#linkedin" onclick="event.preventDefault(); openProfileModal('contact')" aria-label="LinkedIn" data-sound="hover" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-slate-300 hover:text-brand-accent">
+            <i data-lucide="linkedin" class="w-4 h-4"></i>
+          </a>
+          <a href="#github" onclick="event.preventDefault(); openProfileModal('contact')" aria-label="GitHub" data-sound="hover" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-slate-300 hover:text-brand-accent">
+            <i data-lucide="github" class="w-4 h-4"></i>
+          </a>
+          <a href="#instagram" onclick="event.preventDefault(); openProfileModal('contact')" aria-label="Instagram" data-sound="hover" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-slate-300 hover:text-brand-accent">
+            <i data-lucide="instagram" class="w-4 h-4"></i>
+          </a>
+          <a href="#twitter" onclick="event.preventDefault(); openProfileModal('contact')" aria-label="Twitter / X" data-sound="hover" class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-slate-300 hover:text-brand-accent">
+            <i data-lucide="twitter" class="w-4 h-4"></i>
+          </a>
+        </div>
+
+        <!-- Center: Scroll Mouse Indicator -->
+        <div class="hidden sm:flex flex-col items-center gap-1.5 opacity-80">
+          <div class="w-[22px] h-[36px] rounded-full border border-emerald-500/50 bg-black/60 flex justify-center pt-1.5">
+            <div class="w-1 h-2 rounded-full bg-brand-accent scroll-wheel-dot shadow-[0_0_6px_#00ff9d]"></div>
+          </div>
+          <span class="font-mono text-[9px] tracking-[0.25em] text-slate-400 uppercase">Move Cursor</span>
+        </div>
+
+        <!-- Right: System Status -->
+        <div class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/80 border border-emerald-500/30 font-mono text-[11px] text-brand-accent tracking-wider">
+          <span class="w-2 h-2 rounded-full bg-brand-accent animate-ping"></span>
+          <span>● MASK ACTIVE</span>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- INTERACTIVE ARYAN AMENDRA SAWANT DOSSIER MODAL -->
+  <div id="profile-modal" class="fixed inset-0 z-[50] hidden items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md">
+    <div class="relative w-full max-w-2xl nav-capsule rounded-3xl p-6 sm:p-8 shadow-[0_0_60px_rgba(0,255,157,0.2)] max-h-[88vh] overflow-y-auto modal-scroll">
+      
+      <!-- Modal Header -->
+      <div class="flex items-start justify-between gap-4 border-b border-emerald-500/20 pb-5">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950 border border-emerald-500/40 font-mono text-[11px] text-brand-accent mb-2">
+            <span>OPERATOR DOSSIER // ID: AX-AAS</span>
+          </div>
+          <h2 class="font-syne text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Aryan Amendra Sawant
+          </h2>
+          <p class="text-sm text-slate-300 mt-1">
+            Creative Technologist • Full-Stack &amp; AI Systems Builder • Navi Mumbai, India
+          </p>
+        </div>
+        <button 
+          onclick="closeProfileModal()" 
+          class="w-9 h-9 rounded-full glass-btn flex items-center justify-center text-slate-300 hover:text-brand-accent shrink-0"
+          aria-label="Close Modal"
+        >
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="flex gap-2 mt-5 border-b border-white/10 pb-3">
+        <button id="tab-about" onclick="switchModalTab('about')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-500 text-black">
+          Overview &amp; Bio
+        </button>
+        <button id="tab-work" onclick="switchModalTab('work')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/5 text-slate-300 hover:text-white">
+          Core Capabilities
+        </button>
+        <button id="tab-contact" onclick="switchModalTab('contact')" class="px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/5 text-slate-300 hover:text-white">
+          Direct Connect
+        </button>
+      </div>
+
+      <!-- Tab Content: About -->
+      <div id="content-about" class="mt-5 space-y-4 text-sm text-slate-300 leading-relaxed">
+        <p>
+          <strong class="text-white">Aryan Amendra Sawant</strong> is the visionary mind behind <span class="text-brand-accent font-semibold">AXION</span> — blending timeless architectural discipline with cutting-edge artificial intelligence, interactive web engineering, and high-converting digital design.
+        </p>
+        <p>
+          Focused on building resilient, high-performance systems where classical clarity meets futuristic execution, Aryan specializes in transforming complex ideas into fluid, human-centric digital products.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/25">
+            <span class="font-mono text-[10px] text-brand-accent uppercase">Base Location</span>
+            <p class="font-semibold text-white mt-0.5">Mumbai / Navi Mumbai, IN</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/25">
+            <span class="font-mono text-[10px] text-brand-accent uppercase">Primary Focus</span>
+            <p class="font-semibold text-white mt-0.5">AI &amp; Interactive UI/UX</p>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/25">
+            <span class="font-mono text-[10px] text-brand-accent uppercase">Availability</span>
+            <p class="font-semibold text-brand-accent mt-0.5">Open for Collaborations</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Work / Expertise -->
+      <div id="content-work" class="mt-5 hidden space-y-3 text-sm">
+        <div class="p-4 rounded-2xl bg-black/60 border border-emerald-500/25 flex items-start gap-3.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-syne font-bold text-white">Interactive Web &amp; Motion Engineering</h3>
+            <p class="text-slate-400 text-xs mt-1 leading-relaxed">60FPS WebGL/Canvas experiences, custom shader-style spotlight reveals, micro-interactions, and high-impact brand flagships.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/60 border border-emerald-500/25 flex items-start gap-3.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">
+            <i data-lucide="cpu" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-syne font-bold text-white">AI Systems &amp; Intelligent Automation</h3>
+            <p class="text-slate-400 text-xs mt-1 leading-relaxed">Designing agentic workflows, LLM-powered applications, and scalable full-stack architectures engineered for speed and precision.</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-black/60 border border-emerald-500/25 flex items-start gap-3.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-950 border border-emerald-500/40 flex items-center justify-center text-brand-accent shrink-0 mt-0.5">
+            <i data-lucide="layers" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-syne font-bold text-white">Product Strategy &amp; Design Systems</h3>
+            <p class="text-slate-400 text-xs mt-1 leading-relaxed">End-to-end design tokens, conversion-focused landing systems, and cohesive visual identities built for modern digital ventures.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Contact -->
+      <div id="content-contact" class="mt-5 hidden space-y-4 text-sm">
+        <p class="text-slate-300">
+          Ready to build something extraordinary with <strong class="text-white">Aryan Amendra Sawant</strong>? Send a direct transmission or connect via social channels.
+        </p>
+
+        <form onsubmit="handleContactSubmit(event)" class="space-y-3">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input 
+              type="text" 
+              required 
+              placeholder="Your Name" 
+              class="w-full px-4 py-2.5 rounded-xl bg-black/80 border border-emerald-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent text-xs"
+            />
+            <input 
+              type="email" 
+              required 
+              placeholder="Your Email" 
+              class="w-full px-4 py-2.5 rounded-xl bg-black/80 border border-emerald-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent text-xs"
+            />
+          </div>
+          <textarea 
+            rows="3" 
+            required 
+            placeholder="Project brief, inquiry, or message for Aryan..." 
+            class="w-full px-4 py-2.5 rounded-xl bg-black/80 border border-emerald-500/30 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent text-xs"
+          ></textarea>
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+            <span class="font-mono text-xs text-brand-accent">aryan.sawant@axion-intel.io</span>
+            <button 
+              type="submit" 
+              class="px-6 py-2.5 rounded-full bg-brand-500 hover:bg-brand-400 text-black font-bold text-xs shadow-[0_0_20px_rgba(16,185,129,0.4)] transition-all cursor-pointer"
+            >
+              Transmit Message
+            </button>
+          </div>
+        </form>
+        <div id="contact-feedback" class="hidden p-3 rounded-xl bg-emerald-950/90 border border-brand-accent/50 text-brand-accent text-xs font-mono text-center">
+          ✓ TRANSMISSION RECEIVED — ARYAN AMENDRA SAWANT WILL RESPOND SHORTLY.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // ==========================================
+    // 1. 60FPS DUAL-LAYER SPOTLIGHT MASK ENGINE
+    // ==========================================
+    const heroContainer = document.getElementById('hero-container');
+    const maskLayer = document.getElementById('mask-layer');
+    const spotlightHalo = document.getElementById('spotlight-halo');
+
+    let targetX = window.innerWidth * 0.68;
+    let targetY = window.innerHeight * 0.48;
+    let currentX = targetX;
+    let currentY = targetY;
+    let isHovered = false;
+    let spotlightRadius = window.innerWidth < 768 ? 105 : 150;
+
+    function updateMask() {
+      const maskStyle = `radial-gradient(circle ${spotlightRadius}px at ${currentX}px ${currentY}px, black 0%, rgba(0,0,0,0.85) 45%, rgba(0,0,0,0.3) 70%, transparent 100%)`;
+      maskLayer.style.maskImage = maskStyle;
+      maskLayer.style.webkitMaskImage = maskStyle;
+
+      spotlightHalo.style.left = `${currentX}px`;
+      spotlightHalo.style.top = `${currentY}px`;
+      spotlightHalo.style.width = `${spotlightRadius * 2}px`;
+      spotlightHalo.style.height = `${spotlightRadius * 2}px`;
+    }
+
+    function animateSpotlight() {
+      const ease = isHovered ? 0.15 : 0.04;
+      currentX += (targetX - currentX) * ease;
+      currentY += (targetY - currentY) * ease;
+
+      // Idle organic orbit when pointer is inactive
+      if (!isHovered) {
+        const time = Date.now() * 0.0012;
+        const anchorX = window.innerWidth < 768 ? window.innerWidth * 0.65 : window.innerWidth * 0.70;
+        targetX = anchorX + Math.cos(time) * 55;
+        targetY = (window.innerHeight * 0.48) + Math.sin(time * 1.3) * 40;
+      }
+
+      updateMask();
+      requestAnimationFrame(animateSpotlight);
+    }
+
+    heroContainer.addEventListener('mousemove', (e) => {
+      targetX = e.clientX;
+      targetY = e.clientY;
+      isHovered = true;
+    });
+
+    heroContainer.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    heroContainer.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        targetX = e.touches[0].clientX;
+        targetY = e.touches[0].clientY;
+        isHovered = true;
+      }
+    }, { passive: true });
+
+    heroContainer.addEventListener('touchend', () => {
+      isHovered = false;
+    });
+
+    // ==========================================
+    // 2. HTML5 FLOATING PARTICLES CANVAS
+    // ==========================================
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = window.innerWidth < 768 ? 32 : 50;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      spotlightRadius = window.innerWidth < 768 ? 105 : 150;
+    }
+
+    class CyberParticle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.2 + 0.8;
+        this.speedX = (Math.random() - 0.5) * 0.45;
+        this.speedY = -Math.random() * 0.55 - 0.15;
+        this.alpha = Math.random() * 0.65 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.y < -10 || this.x < -10 || this.x > canvas.width + 10) {
+          this.reset();
+          this.y = canvas.height + 10;
+        }
+      }
+      draw() {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 255, 157, ${this.alpha})`;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#00ff9d';
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function initParticles() {
+      resizeCanvas();
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new CyberParticle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    initParticles();
+    animateParticles();
+    animateSpotlight();
+
+    // ==========================================
+    // 3. WEB AUDIO SYNTHESIZER (TACTILE FEEDBACK)
+    // ==========================================
+    let audioCtx = null;
+    let audioEnabled = false;
+    const soundToggleBtn = document.getElementById('sound-toggle');
+    const soundIcon = document.getElementById('sound-icon');
+
+    function playCyberTone(freq = 520, duration = 0.08, type = 'sine') {
+      if (!audioEnabled) return;
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.35, audioCtx.currentTime + duration);
+
+      gain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    soundToggleBtn.addEventListener('click', () => {
+      audioEnabled = !audioEnabled;
+      soundIcon.setAttribute('data-lucide', audioEnabled ? 'volume-2' : 'volume-x');
+      lucide.createIcons();
+      if (audioEnabled) playCyberTone(640, 0.14, 'triangle');
+    });
+
+    document.querySelectorAll('[data-sound="hover"]').forEach(el => {
+      el.addEventListener('mouseenter', () => playCyberTone(480, 0.05, 'sine'));
+    });
+
+    document.querySelectorAll('[data-sound="click"]').forEach(el => {
+      el.addEventListener('click', () => playCyberTone(720, 0.1, 'triangle'));
+    });
+
+    // ==========================================
+    // 4. MOBILE MENU & PROFILE DOSSIER MODAL
+    // ==========================================
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    const menuIcon = document.getElementById('menu-icon');
+    let mobileMenuOpen = false;
+
+    function closeMobileMenu() {
+      mobileMenuOpen = false;
+      mobileDrawer.classList.add('hidden');
+      mobileDrawer.classList.remove('flex');
+      menuIcon.setAttribute('data-lucide', 'menu');
+      lucide.createIcons();
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenuOpen = !mobileMenuOpen;
+      if (mobileMenuOpen) {
+        mobileDrawer.classList.remove('hidden');
+        mobileDrawer.classList.add('flex');
+        menuIcon.setAttribute('data-lucide', 'x');
+      } else {
+        closeMobileMenu();
+      }
+      lucide.createIcons();
+      playCyberTone(580, 0.08, 'triangle');
+    });
+
+    const profileModal = document.getElementById('profile-modal');
+
+    function openProfileModal(tab = 'about') {
+      profileModal.classList.remove('hidden');
+      profileModal.classList.add('flex');
+      switchModalTab(tab);
+      playCyberTone(660, 0.12, 'triangle');
+    }
+
+    function closeProfileModal() {
+      profileModal.classList.add('hidden');
+      profileModal.classList.remove('flex');
+      playCyberTone(420, 0.08, 'sine');
+    }
+
+    function switchModalTab(tab) {
+      ['about', 'work', 'contact'].forEach(key => {
+        const content = document.getElementById(`content-${key}`);
+        const btn = document.getElementById(`tab-${key}`);
+        if (key === tab) {
+          content.classList.remove('hidden');
+          btn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-brand-500 text-black';
+        } else {
+          content.classList.add('hidden');
+          btn.className = 'px-4 py-1.5 rounded-full text-xs font-semibold transition-all bg-white/5 text-slate-300 hover:text-white';
+        }
+      });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      playCyberTone(820, 0.16, 'triangle');
+      const feedback = document.getElementById('contact-feedback');
+      feedback.classList.remove('hidden');
+      e.target.reset();
+    }
+
+    // Close modal when clicking backdrop
+    profileModal.addEventListener('click', (e) => {
+      if (e.target === profileModal) closeProfileModal();
+    });
+  </script>
+</body>
+</html>
